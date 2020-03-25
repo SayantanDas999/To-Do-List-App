@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+{% block title %}To-Do App | Edit Item{% endblock %}
+{% block content %}
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				{{message}}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		{% endfor %}
+	{% endif %}
+	<table class="table table-bordered">
+		<tr>
+			<td><center>{{item.item}}</center></td>
+			<td>
+				<form class="form-inline my-2 my-lg-0" method="POST">
+				{% csrf_token %}
+				<input class="form-control mr-sm-2" type="search" placeholder="Update Item" aria-label="Search" name="item">
+				<input type="hidden" value="{{item.completed}}" name="completed">
+				<button class="btn btn-primary btn-sm active" type="submit">Update</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+{% endblock %}
